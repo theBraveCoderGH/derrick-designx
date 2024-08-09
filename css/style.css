@@ -562,7 +562,7 @@
   .campus h1 {
     font-size: 20px;
   }
-  .row {
+  .campus-row {
     flex-direction: column;
   }
 }
