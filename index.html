@@ -326,86 +326,25 @@
             data-wow-delay="0.2s"
           >
             <div class="filter-buttons">
-              <button class="filter-btn active" data-filter="ui-ux">
-                UI/UX
-              </button>
-              <button class="filter-btn" data-filter="app-design">
+              <button class="filter-btn" onclick="openModal('app-design')">
                 App Design
               </button>
-              <button class="filter-btn" data-filter="graphic-design">
+              <button class="filter-btn" onclick="openModal('graphic-design')">
                 Graphic Design
               </button>
-              <button class="filter-btn" data-filter="web-design">
-                Web Design
-              </button>
-              <button class="filter-btn" data-filter="illustration">
-                Illustration
-              </button>
-            </div>
-
-            <div
-              id="carouselExample"
-              class="carousel slide"
-              data-ride="carousel"
-            >
-              <div class="carousel-inner">
-                <div
-                  class="carousel-item-one active portfolio-item"
-                  data-category="ui-ux"
-                >
-                  <img
-                    class="d-block w-100"
-                    src="images/carousel of projects.png"
-                    alt="UI/UX Design"
-                  />
-                </div>
-                <div
-                  class="carousel-item-one portfolio-item"
-                  data-category="app-design"
-                >
-                  <img
-                    class="d-block w-100"
-                    src="images/terra.png"
-                    alt="App Design"
-                  />
-                </div>
-                <div
-                  class="carousel-item-one portfolio-item"
-                  data-category="graphic-design"
-                >
-                  <img
-                    class="d-block w-100"
-                    src="images/prime 1.png"
-                    alt="Graphic Design"
-                  />
-                </div>
-
-                <div
-                  class="carousel-item-one portfolio-item"
-                  data-category="web-design"
-                >
-                  <img
-                    class="d-block w-100"
-                    src="images/705shots_so 1.png"
-                    alt="Web Design"
-                  />
-                </div>
-                <div
-                  class="carousel-item-one portfolio-item"
-                  data-category="illustration"
-                >
-                  <img
-                    class="d-block w-100"
-                    src="images/505_1x_shots_so 1.png"
-                    alt="Illustration"
-                  />
-                </div>
-                <!-- Add more carousel items as needed -->
-              </div>
             </div>
           </div>
         </div>
       </section>
+
+      <!-- Modal Structure -->
+      <div id="portfolioModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <div id="modalImages" class="modal-images grid-container"></div>
+        </div>
+      </div>
+
       <!-- Projects End -->
 
       <!-- Testimonial Start -->
@@ -658,71 +597,54 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    <script
-      type="text/javascript"
-      src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
-    ></script>
-    <script type="text/javascript">
-      (function ($) {
-        window.fnames = new Array();
-        window.ftypes = new Array();
-        fnames[0] = "EMAIL";
-        ftypes[0] = "email";
-        fnames[1] = "FNAME";
-        ftypes[1] = "text";
-        fnames[2] = "LNAME";
-        ftypes[2] = "text";
-        fnames[3] = "ADDRESS";
-        ftypes[3] = "address";
-        fnames[4] = "PHONE";
-        ftypes[4] = "phone";
-        fnames[5] = "BIRTHDAY";
-        ftypes[5] = "birthday";
-      })(jQuery);
-      var $mcj = jQuery.noConflict(true);
-    </script>
-
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const filterButtons = document.querySelectorAll(".filter-btn");
-        const carouselItems = document.querySelectorAll(".carousel-item-one");
+      const imageData = {
+        "app-design": [
+          "images/app1.png",
+          "images/app2.png",
+          "images/app3.png",
+          "images/app4.png",
+          "images/app5.png",
+          "images/app6.png",
+        ],
+        "graphic-design": [
+          "images/kids.png",
+          "images/smoothies.png",
+          "images/aa.png",
+          "images/ww.png",
+          "images/shays.png",
+          "images/oo.png",
+          "images/aduane.png",
+        ],
+      };
 
-        filterButtons.forEach((button) => {
-          button.addEventListener("click", () => {
-            const filter = button.getAttribute("data-filter");
+      function openModal(category) {
+        const modal = document.getElementById("portfolioModal");
+        const modalImages = document.getElementById("modalImages");
+        modalImages.innerHTML = ""; // Clear previous images
 
-            // Remove 'active' class from all buttons
-            filterButtons.forEach((btn) => btn.classList.remove("active"));
-            // Add 'active' class to the clicked button
-            button.classList.add("active");
-
-            // Filter carousel items
-            let firstVisibleItem = null;
-            carouselItems.forEach((item) => {
-              item.classList.remove("active"); // Remove active class from all items initially
-              if (
-                filter === "all" ||
-                item.getAttribute("data-category") === filter
-              ) {
-                item.style.display = "block";
-                if (!firstVisibleItem) {
-                  firstVisibleItem = item;
-                }
-              } else {
-                item.style.display = "none";
-              }
-            });
-
-            // Show the first visible item in the carousel
-            if (firstVisibleItem) {
-              firstVisibleItem.classList.add("active");
-            }
-          });
+        // Loop through the image array for the selected category
+        imageData[category].forEach((imageSrc) => {
+          const img = document.createElement("img");
+          img.src = imageSrc;
+          img.alt = `${category} image`;
+          modalImages.appendChild(img);
         });
 
-        // Initially show all items
-        document.querySelector('.filter-btn[data-filter="all"]').click();
-      });
+        modal.style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("portfolioModal").style.display = "none";
+      }
+
+      // Close the modal if the user clicks outside the content
+      window.onclick = function (event) {
+        const modal = document.getElementById("portfolioModal");
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
     </script>
   </body>
 </html>
