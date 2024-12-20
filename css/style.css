@@ -617,3 +617,69 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+.carousel-text-container-one {
+  position: absolute;
+  top: 30%; /* Move this container down */
+  left: 95%;
+  width: 80%;
+}
+
+.carousel-text-container-two {
+  position: absolute;
+  top: 30%; /* Move this container down */
+  right: 95%;
+  width: 60%;
+  text-align: start;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .carousel-caption {
+    position: relative; /* Allow caption to expand */
+    padding-top: 50px; /* Add padding to ensure space for visibility */
+  }
+
+  .carousel-text-container-one,
+  .carousel-text-container-two {
+    position: relative; /* Change to relative for stacking */
+    top: auto; /* Reset top positioning */
+    left: auto; /* Reset left positioning */
+    right: auto; /* Reset right positioning */
+    width: 90%; /* Unified width for responsive layout */
+    margin: 20px 0; /* Add margin for proper spacing */
+    text-align: center; /* Center-align text */
+  }
+
+  .carousel-text-container-one {
+    margin-top: 30px; /* Add spacing between elements */
+  }
+
+  .carousel-text-container-two {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-caption {
+    padding-top: 180px; /* Ensure extra space on very small devices */
+  }
+
+  .carousel-text-container-one,
+  .carousel-text-container-two {
+    font-size: 0.9rem; /* Adjust font size for smaller screens */
+    width: 95%; /* Maximize width for small screens */
+    margin: 20px 0; /* Ensure consistent spacing */
+  }
+}
+
+.experience-text {
+  font-weight: medium;
+}
+
+.exper {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
