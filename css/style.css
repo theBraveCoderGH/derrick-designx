@@ -620,14 +620,14 @@
 
 .carousel-text-container-one {
   position: absolute;
-  top: 30%; /* Move this container down */
+  top: 25%; /* Move this container down */
   left: 95%;
   width: 80%;
 }
 
 .carousel-text-container-two {
   position: absolute;
-  top: 30%; /* Move this container down */
+  top: 25%; /* Move this container down */
   right: 95%;
   width: 60%;
   text-align: start;
